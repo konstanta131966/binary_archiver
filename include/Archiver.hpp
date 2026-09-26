@@ -14,6 +14,6 @@ namespace arc {
         std :: vector<FileEntry> list(const fs :: path& archive_path);
         
         //exctract all files from archive_path to output_dir
-         void exctract(const fs ::  path& archive_path, const fs :: path& output_dir);
+         void extract(const fs ::  path& archive_path, const fs :: path& output_dir);
     };
 
