@@ -4,11 +4,11 @@
 #include<string_view>
 #include <iomanip>
 
-void print_usage(std::string_view file_archiver){
-    std::cout << "Select usage:\n"
-              << " " << file_archiver << " Pack <source_dir><archive.arc>\n"
-              << " " << file_archiver <<" List <archive.arc>\n"
-              << " " << file_archiver << " Extract <archive.arc><output_dir>\n";
+void print_usage(std::string_view prog_name) {
+    std::cout << "Usage:\n"
+              << "  " << prog_name << " pack <archive.arc> <input_path>...\n"
+              << "  " << prog_name << " list <archive.arc>\n"
+              << "  " << prog_name << " extract <archive.arc> [output_dir]\n";
 }
 
 int main(int argc ,char* argv[]){
@@ -21,12 +21,19 @@ int main(int argc ,char* argv[]){
 
     try{
         if (command == "pack"){
-            if (argc != 4){
+            if (argc < 4){
                 print_usage(argv[0]);
                 return 1;
             }
-            arc::pack(argv[2],argv[3]);
-            std::cout << "Archive created succesfully: " << argv[3] << "\n";
+            arc::fs::path archive_path = argv[2];
+            std::vector<arc::fs::path> inputs;
+
+            //collecting all trailing arguments: argv[3],argv[4]
+            for (int i = 3; i < argc; ++i){
+                inputs.emplace_back(argv[i]);
+            }
+            arc::pack(archive_path,inputs);
+            std::cout << "Archive created succesfullt: " << archive_path.string() << "\n";
         }
         else if (command == "list"){
             if (argc != 3){

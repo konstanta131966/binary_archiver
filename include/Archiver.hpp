@@ -8,7 +8,7 @@ namespace arc {
     namespace fs = std :: filesystem;
     
         //create an archive at 'archive_path' containing all files from source_dir
-        void pack(const fs::path& source_dir,const fs :: path& archive_path);
+        void pack(const fs::path& archive_path,const std::vector<fs::path>& inputs);
 
         //read and return the metadata entries from an archive without extracting payload
         std :: vector<FileEntry> list(const fs :: path& archive_path);

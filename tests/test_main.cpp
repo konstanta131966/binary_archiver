@@ -30,7 +30,7 @@ TEST_CASE("Pack,List and Extract Roundtrip", "[archiver]"){
 
     }
     //test pack
-    REQUIRE_NOTHROW(arc::pack(src_dir,arc_file));
+    REQUIRE_NOTHROW(arc::pack(arc_file,{src_dir}));
     REQUIRE(fs::exists(arc_file));
     //test list
     auto entries = arc::list(arc_file);

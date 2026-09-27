@@ -33,3 +33,8 @@ target_link_libraries(arc_tests PRIVATE archiver_core Catch2::Catch2WithMain)
 add_test(NAME AllTests COMMAND arc_tests)
 
 
+include(GNUInstallDirs)
+
+install(TARGETS arc
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)

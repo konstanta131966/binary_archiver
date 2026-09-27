@@ -56,6 +56,4 @@ When reading an archive:
 4) Read each 276-byte FileEntry. Now we know every file's name,size,permission
 and where its payload starts(data_offset)
 
-
-
 */
